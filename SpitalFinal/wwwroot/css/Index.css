@@ -1,0 +1,44 @@
+﻿
+.mod {
+    position: relative;
+    width: 400px;
+    height: 440px;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,.5);
+    border-radius: 20px;
+}
+
+.h2mod {
+    font-family: Arial, sans-serif;
+    color: aqua;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+h1 {
+    font-family: Arial, sans-serif;
+    color: aqua;
+    font-size: 32px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+h3, h4, h6 {
+    color: turquoise;
+}
+
+.colorTextAqua {
+    color: aqua;
+    background: transparent;
+}
+
+
+body {
+    background-color: aqua;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

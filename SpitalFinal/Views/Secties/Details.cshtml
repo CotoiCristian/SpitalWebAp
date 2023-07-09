@@ -1,0 +1,38 @@
+﻿@model IEnumerable<SpitalFinal.Models.Sectie>
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeSectie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Etaj)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeSectie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Etaj)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.SectieId">Edit</a> |
+                   
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+   @using Microsoft.AspNetCore.Identity
+   @using Microsoft.AspNetCore.Http;
+  
+   @using SpitalFinal.Controllers 
+   @using System.Linq;
+
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Spitalul Monza</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SpitalFinal.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/HomeButtons.css" asp-append-version="true" />
+   
+  
+</head>
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    IdentityUser user = await UserManager.GetUserAsync(User); // Obține utilizatorul curent autentificat
+    bool isUser = false; // inițializare variabilă isUser
+    bool isAdmin = false; // inițializare variabilă isUser
+    if (user != default(IdentityUser))
+    {
+        isUser = await UserManager.IsInRoleAsync(user, "Users"); // Verifică dacă utilizatorul are rolul "User"
+        isAdmin = await UserManager.IsInRoleAsync(user, "Admins");                                                     // Afișează valoarea returnată de IsInRoleAsync
+    }
+
+}
+<body >
+
+
+    <header>
+        <nav class=" navbar navbar-expand-sm bordura ">
+             <div class="navbar-collapse bordura">
+                <ul class="navbar-nav flex-grow-1 bordura">
+                   
+                    @if (isUser)
+                    {
+                        <li class="btn1">
+                            <a class="btn" asp-area="" asp-controller="Pacients" asp-action="Index">Pacienti</a>
+                        </li>
+                        <li class="btn1">
+                            <a class="btn" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="btn1">
+                            <a class="btn" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="btn1">
+                            <a class="btn" asp-area="" asp-controller="Users" asp-action="Index">User</a>
+                        </li>
+
+                    }
+                    else if(isAdmin)
+                    
+                    {
+                             <li class="btn1">
+                            <a class="btn" asp-area="" asp-controller="Medics" asp-action="Index">Medic</a>
+                        </li>
+                        <li class="btn1">
+                            <a class="btn" asp-area="" asp-controller="Programares" asp-action="Index">Programare</a>
+                        </li>
+                        <li class="btn1">
+                            <a class="btn" asp-area="" asp-controller="RetetaMedicalas" asp-action="Index">Reteta Medicala</a>
+                        </li>
+                        <li class="btn1">
+                            <a class="btn" asp-area="" asp-controller="ProgramLucrus" asp-action="Index">Program de Lucru</a>
+                        </li>
+                        <li class="btn1">
+                            <a class="btn" asp-area="" asp-controller="FisaMedics" asp-action="Index">Fisa Medic</a>
+                        </li>
+                        <li class="btn1">
+                            <a class="btn" asp-area="" asp-controller="Investigaties1" asp-action="Index">Investigatie</a>
+                        </li>
+                        <li class="btn1">
+                            <a class="btn" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+
+                        <li class="btn1">
+                            <a class="btn" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="btn1">
+                            <a class="btn" asp-area="" asp-controller="Secties" asp-action="Index">Sectie</a>
+                        </li>
+                   
+                        
+                    }
+                </ul>
+                    <partial name="_LoginPartial"/>
+             </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <!--
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - SpitalFinal - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>-->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+ 
+</body>
+</html>

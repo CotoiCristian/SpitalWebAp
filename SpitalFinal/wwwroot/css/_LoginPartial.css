@@ -1,0 +1,56 @@
+﻿
+.login-button {
+    background-color: dodgerblue;
+    color: turquoise;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-right: 8px;
+    margin-left: 8px;
+    padding-top: 8px;
+    padding-bottom: 5px;
+    padding-left: 16px;
+    padding-right: 16px;
+    transition: opacity 0.15s;
+    vertical-align: top;
+    border-radius: 30px;
+    height: 42px;
+    position: relative;
+    font-weight: bold;
+}
+
+.login {
+    background-color: turquoise;
+    color: dodgerblue;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-right: 8px;
+    margin-left: 8px;
+    padding-top: 8px;
+    padding-bottom: 5px;
+    padding-left: 16px;
+    padding-right: 16px;
+    transition: opacity 0.15s;
+    vertical-align: top;
+    border-radius: 30px;
+    height: 42px;
+    position: relative;
+    font-weight: bold;
+}
+
+.login-button:hover {
+    opacity: 0.8;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0.15);
+    background-color: dodgerblue;
+    color: turquoise;
+}
+
+.login-button:active {
+    opacity: 0.5
+}
+
+.bordura1 {
+    background-color: aqua;
+    /* exemplu de bordură de 2 pixeli, solidă și albă */
+}

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<SpitalFinal.Models.FisaMedic>
+<head>
+    <link rel="stylesheet" href="~/css/Index.css" asp-append-version="true" />
+</head>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1></h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataInternare)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataExternare)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pacient)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Medic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RetetaMedicala)
+            </th>
+            <th>Optiuni</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataInternare)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataExternare)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pacient.NumePacient)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Medic.Nume)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RetetaMedicala.Denumire)
+                </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.FisaMedicId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.FisaMedicId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.FisaMedicId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

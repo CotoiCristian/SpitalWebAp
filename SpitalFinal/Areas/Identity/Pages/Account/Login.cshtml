@@ -1,0 +1,124 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+   <link rel="stylesheet" href="~/css/stil.css" asp-append-version="true" />
+   <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<style>
+    .mod{
+        position: relative;
+        width: 400px;
+        height: 440px;
+        background: transparent;
+        border: 2px solid rgba(255,255,255,.5);
+        border-radius: 20px;
+
+    }
+    .h2mod{
+        font-family: Arial, sans-serif;
+        color: aqua;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+
+    h1 {
+        font-family: Arial, sans-serif;
+        color: aqua;
+        font-size: 32px;
+        font-weight: bold;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    h3, h4, h6 {
+        color: turquoise;
+    }  
+    .colorTextAqua{
+    color: aqua;
+        background: transparent;
+    }
+
+
+    body {
+        background-image: url('@Url.Content("~/img/eye.jpg")');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+
+
+</style>
+
+<h1>@ViewData["Title"]</h1>
+<body>
+<div class="mod">
+    <div class="mod">
+        <section>
+            <form id="account" method="post">
+                <div class="h2mod">Your account.</div>
+               
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <div class="form-floating">
+                        <input asp-for="Input.Email" class="form-control mod h2mod" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                    <label asp-for="Input.Email" class="colorTextAqua  ">Email</label>
+                    <span asp-validation-for="Input.Email" class="colorTextAqua"></span>
+                </div>
+                <div class="form-floating">
+                        <input asp-for="Input.Password" class="form-control mod h2mod" autocomplete="current-password" aria-required="true" placeholder="password" />
+                        <label asp-for="Input.Password" class="colorTextAqua">Password</label>
+                        <span asp-validation-for="Input.Password" class="colorTextAqua"></span>
+                </div>
+                <div class="checkbox mb-3">
+                        <label asp-for="Input.RememberMe" class="form-label h2mod">
+                        <input class="form-check-input" asp-for="Input.RememberMe" />
+                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                    </label>
+                </div>
+                <div>
+                    <button id="login-submit" type="submit" class="btn-login">Log in</button>
+                </div>
+                    <div class="colorTextAqua">
+                    <p>
+                            <a class="colorTextAqua " id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                    </p>
+                    <p>
+                            <a class ="colorTextAqua " asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                    </p>
+                    <p>
+                            <a class="colorTextAqua " id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h3></h3>
+            <hr />
+            @{
+              
+                
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins!)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                
+            }
+        </section>
+    </div>
+</div>
+</body>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
